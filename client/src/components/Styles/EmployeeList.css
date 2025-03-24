@@ -1,0 +1,22 @@
+/* .add_icon i{
+      display: flex;
+      flex-direction: column;
+} */
+
+.add_icon{ 
+      margin-left: 10px;
+}
+.employee_list_text{
+      background: teal;
+      filter: drop-shadow(0px 1px 2px black);
+}
+.employee_list_text h3{
+      letter-spacing: 1px;
+      filter: drop-shadow(0px 0px 3px black);
+
+}
+.search{
+      display: flex;
+      justify-content: space-between;
+ 
+} 

@@ -1,0 +1,9 @@
+ .dashboard_text_head h3 {
+      font-style: oblique;
+      font-size: 40px;
+       filter: drop-shadow(3px 1px 3px black);
+ }
+
+ .dashboard_text_head {
+       background: azure;
+ }

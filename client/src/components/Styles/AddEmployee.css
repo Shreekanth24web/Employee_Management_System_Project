@@ -1,0 +1,18 @@
+.add_employee_container {
+
+      border: 0px solid black;
+      margin-top: 30px;
+      padding: 30px;
+      height: 530px;
+      background: #01ffff1e;
+      filter: drop-shadow(0px 0px 5px );
+      border-radius: 5px;
+
+}
+.desg_date{
+      gap:5px;
+}
+.employee_list_text h4{
+      letter-spacing: 1px;
+      filter: drop-shadow(0px 0px 3px black);
+}
