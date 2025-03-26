@@ -10,7 +10,7 @@ import UpdateEmployee from '../EmployeeMS/UpdateEmployee'
 
 const Main = () => {
      return (
-          <BrowserRouter>
+          <BrowserRouter basename="/Employee_Management_System_Project"> 
                <Routes>
                     <Route path='/' element={<SignUp />} />
                     <Route path='/login' element={<Login />} />

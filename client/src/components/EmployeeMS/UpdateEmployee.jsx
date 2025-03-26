@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import '../Styles/AddEmployee.css'
 import { useNavigate, useParams } from 'react-router-dom';
-import axios from 'axios';
+import axios from '../../axiosConfig'
 
 const UpdateEmployee = () => {
 
@@ -62,7 +62,7 @@ const UpdateEmployee = () => {
         // navigate('/dashboard/employeeList')
       })
       .catch(err => console.log(err))
-  }, [])
+  }, [id])
 
   const handleUpdate = (e) => {
     e.preventDefault()

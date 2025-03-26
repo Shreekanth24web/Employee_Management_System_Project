@@ -71,3 +71,5 @@ src/reportWebVitals.js
 src/setupTests.js
 >>>>>>> 471b2e3d96e039192e1cf829d1fe2cf7a9703562
 >>>>>>> 9709db6 (Initial commit for backend)
+
+.vercel

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import '../Styles/SignUp.css'
 import { Link } from 'react-router-dom'
-import axios from 'axios'
+import axios from '../../axiosConfig'
 import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 const SignUp = () => {

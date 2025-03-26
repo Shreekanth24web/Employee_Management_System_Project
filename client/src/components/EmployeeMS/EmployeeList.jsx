@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import '../Styles/EmployeeList.css'
 import { Link } from 'react-router-dom'
-import axios from 'axios'
+import axios from '../../axiosConfig'
 
 const EmployeeList = () => {
       // State variables
@@ -21,27 +21,24 @@ const EmployeeList = () => {
 
 
       // Fetch employees based on current page
-      useEffect(() => {
-            fetchEmployees();
-      }, [currentPage]);
-
-      // Function to fetch employees from the server
-      const fetchEmployees = async () => {
+      // ✅ Use useCallback to memoize the function
+      const fetchEmployees = useCallback(async () => {
             try {
-                  // Number of employees per page
                   const pageSize = 6;
                   const response = await axios.get(`http://localhost:3009/employees?page=${currentPage}&pageSize=${pageSize}`);
                   const { results, pagination } = response.data;
-                  // console.log(response.data)
-                  // console.log(results)
-                  // console.log(pagination)
                   setEmpData(results);
                   setTotalPages(pagination.totalPages);
-                  setTotalEmployees(pagination.totalCount)
+                  setTotalEmployees(pagination.totalCount);
             } catch (error) {
                   console.error('Error fetching employees:', error);
             }
-      };
+      }, [currentPage]); // ✅ Only re-run when currentPage changes
+
+      // ✅ Now safe to include fetchEmployees in useEffect
+      useEffect(() => {
+            fetchEmployees();
+      }, [fetchEmployees]);
 
       const handleNextPage = () => {
             if (currentPage < totalPages) {
@@ -90,7 +87,7 @@ const EmployeeList = () => {
                         <table className="table table-success table-striped table-bordered table-hover">
                               <thead className='table table-dark'>
                                     <tr>
-                                          <th scope="col">ID</th> 
+                                          <th scope="col">ID</th>
                                           <th scope="col">Profile</th>
                                           <th scope="col">Name</th>
                                           <th scope="col">Email</th>
@@ -112,7 +109,7 @@ const EmployeeList = () => {
                                                 return (
                                                       <tr key={i}>
                                                             <th scope="row">{i + 1}</th>
-                                                            <td>{<img src={item.image} alt={item.name} style={{ width: '80px' }} />}</td> 
+                                                            <td>{<img src={item.image} alt={item.name} style={{ width: '80px' }} />}</td>
                                                             <td>{item.name}</td>
                                                             <td>{item.email}</td>
                                                             <td>{item.mobile}</td>

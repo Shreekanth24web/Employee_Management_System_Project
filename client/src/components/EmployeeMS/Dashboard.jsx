@@ -1,15 +1,14 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useCallback } from 'react'
 import '../Styles/Dashboard.css'
 import { Link, Outlet, useNavigate } from 'react-router-dom'
-import axios from 'axios'
+import axios from '../../axiosConfig'
 
 const Dashboard = () => {
 
   const navigate = useNavigate()
 
-  useEffect(() => {
-    handleProtectedRouteAccess();
-  }, []);
+
+
 
   const handleLogout = () => {
     // Remove token from local storage
@@ -23,34 +22,25 @@ const Dashboard = () => {
   }
 
 
-  const handleProtectedRouteAccess = () => {
-    // Retrieve token from local storage
+  const handleProtectedRouteAccess = useCallback(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      // Include token in the request headers
       axios.get('http://localhost:3009/protectedRoute', {
-        headers: {
-          Authorization: token
-        }
+        headers: { Authorization: token },
       })
-        .then(res => {
-          console.log(res.data);
-
-          // console.log(res.data.user.email);
- 
-          // Handle the response from the protected route
-        })
+        .then(res => console.log(res.data))
         .catch(err => {
-          console.log(err.response.data);
-          // Handle any errors, such as unauthorized access
-          navigate('/login'); // Redirect to login page if unauthorized access
+          console.log(err.response?.data);
+          navigate('/login');
         });
     } else {
-      // Redirect to login page if token is not available
       navigate('/login');
     }
-  };
-
+  }, [navigate]); // ✅ Add navigate as a dependency
+ 
+  useEffect(() => {
+    handleProtectedRouteAccess();
+  }, [handleProtectedRouteAccess]);
 
   return (
     <div className="container-fluid box">
