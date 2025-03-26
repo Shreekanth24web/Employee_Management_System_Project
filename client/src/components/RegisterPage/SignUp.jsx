@@ -36,7 +36,7 @@ const SignUp = () => {
                         timerProgressBar: true
                   });
             } else {
-                  axios.post('http://localhost:3009/', { name, email, password })
+                  axios.post('https://your-vercel-server-url.vercel.app/', { name, email, password })
                         .then(result => {
                               console.log(result)
 

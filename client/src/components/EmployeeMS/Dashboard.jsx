@@ -13,7 +13,7 @@ const Dashboard = () => {
   const handleLogout = () => {
     // Remove token from local storage
     localStorage.removeItem('token');
-    axios.get('http://localhost:3009/logout')
+    axios.get('https://your-vercel-server-url.vercel.app/logout')
       .then(res => {
         console.log(res)
         navigate('/')
@@ -25,7 +25,7 @@ const Dashboard = () => {
   const handleProtectedRouteAccess = useCallback(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      axios.get('http://localhost:3009/protectedRoute', {
+      axios.get('https://your-vercel-server-url.vercel.app/protectedRoute', {
         headers: { Authorization: token },
       })
         .then(res => console.log(res.data))

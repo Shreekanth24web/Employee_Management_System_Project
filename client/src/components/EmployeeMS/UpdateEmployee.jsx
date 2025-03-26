@@ -66,7 +66,7 @@ const UpdateEmployee = () => {
 
   const handleUpdate = (e) => {
     e.preventDefault()
-    axios.put("http://localhost:3009/updateEmployee/" + id, input)
+    axios.put("https://your-vercel-server-url.vercel.app/updateEmployee/" + id, input)
       .then(result => {
         console.log(result)
 

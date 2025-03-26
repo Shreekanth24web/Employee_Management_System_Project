@@ -12,7 +12,7 @@ const EmployeeList = () => {
       const [totalEmployees, setTotalEmployees] = useState(0);
       // Fetch employees
       useEffect(() => {
-            axios.get('http://localhost:3009')
+            axios.get('https://your-vercel-server-url.vercel.app')
                   .then(res => {
                         setEmpData(res.data)
                   })
@@ -25,7 +25,7 @@ const EmployeeList = () => {
       const fetchEmployees = useCallback(async () => {
             try {
                   const pageSize = 6;
-                  const response = await axios.get(`http://localhost:3009/employees?page=${currentPage}&pageSize=${pageSize}`);
+                  const response = await axios.get(`https://your-vercel-server-url.vercel.app/employees?page=${currentPage}&pageSize=${pageSize}`);
                   const { results, pagination } = response.data;
                   setEmpData(results);
                   setTotalPages(pagination.totalPages);
@@ -53,7 +53,7 @@ const EmployeeList = () => {
       };
 
       const handleDelete = (id) => {
-            axios.delete('http://localhost:3009/deleteData/' + id)
+            axios.delete('https://your-vercel-server-url.vercel.app/deleteData/' + id)
                   .then(res => {
                         console.log(res.data)
                         window.location.reload()

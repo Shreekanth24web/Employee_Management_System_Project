@@ -93,7 +93,7 @@ const AddEmployee = () => {
     });
     formData.append('date', input.date);
     formData.append('image', input.image);
-    axios.post("http://localhost:3009/addEmployee", formData)
+    axios.post("https://your-vercel-server-url.vercel.app/addEmployee", formData)
       .then(result => {
         console.log("Addemployee-->", result)
         navigate('/dashboard/employeeList')
