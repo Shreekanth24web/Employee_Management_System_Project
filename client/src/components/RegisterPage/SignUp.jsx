@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import '../Styles/SignUp.css'
 import { Link } from 'react-router-dom'
-import axios from '../../axiosConfig'
+import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 const SignUp = () => {
@@ -36,7 +36,7 @@ const SignUp = () => {
                         timerProgressBar: true
                   });
             } else {
-                  axios.post('https://your-vercel-server-url.vercel.app/', { name, email, password })
+                  axios.post('http://localhost:3009/', { name, email, password })
                         .then(result => {
                               console.log(result)
 

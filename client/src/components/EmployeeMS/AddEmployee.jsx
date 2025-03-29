@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import '../Styles/AddEmployee.css'
-import axios from '../../axiosConfig'
+import axios from  'axios'
 import { useNavigate } from 'react-router-dom'
 import Swal from 'sweetalert2'
 
@@ -93,7 +93,7 @@ const AddEmployee = () => {
     });
     formData.append('date', input.date);
     formData.append('image', input.image);
-    axios.post("https://your-vercel-server-url.vercel.app/addEmployee", formData)
+    axios.post("http://localhost:3009/addEmployee", formData)
       .then(result => {
         console.log("Addemployee-->", result)
         navigate('/dashboard/employeeList')

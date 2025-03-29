@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import '../Styles/Login.css'
 import { useNavigate } from 'react-router-dom'
-import axios from '../../axiosConfig'
+import axios from 'axios'
 import Swal from 'sweetalert2'
 
 const Login = () => {
@@ -38,7 +38,7 @@ const Login = () => {
     }
     else {
       console.log("Login");
-      axios.post('https://your-vercel-server-url.vercel.app/login', { email, password })
+      axios.post('http://localhost:3009/login', { email, password })
         .then(result => {
           console.log("login--->", result);
           if (result.data.message === "Login successful") {

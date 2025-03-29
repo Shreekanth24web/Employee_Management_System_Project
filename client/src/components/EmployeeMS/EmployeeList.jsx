@@ -1,7 +1,7 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useState  } from 'react'
 import '../Styles/EmployeeList.css'
 import { Link } from 'react-router-dom'
-import axios from '../../axiosConfig'
+import axios from 'axios'
 
 const EmployeeList = () => {
       // State variables
@@ -12,7 +12,7 @@ const EmployeeList = () => {
       const [totalEmployees, setTotalEmployees] = useState(0);
       // Fetch employees
       useEffect(() => {
-            axios.get('https://your-vercel-server-url.vercel.app')
+            axios.get('http://localhost:3009')
                   .then(res => {
                         setEmpData(res.data)
                   })
@@ -22,10 +22,10 @@ const EmployeeList = () => {
 
       // Fetch employees based on current page
       // ✅ Use useCallback to memoize the function
-      const fetchEmployees = useCallback(async () => {
+      const fetchEmployees = (async () => {
             try {
                   const pageSize = 6;
-                  const response = await axios.get(`https://your-vercel-server-url.vercel.app/employees?page=${currentPage}&pageSize=${pageSize}`);
+                  const response = await axios.get(`http://localhost:3009/employees?page=${currentPage}&pageSize=${pageSize}`);
                   const { results, pagination } = response.data;
                   setEmpData(results);
                   setTotalPages(pagination.totalPages);
@@ -53,7 +53,7 @@ const EmployeeList = () => {
       };
 
       const handleDelete = (id) => {
-            axios.delete('https://your-vercel-server-url.vercel.app/deleteData/' + id)
+            axios.delete('http://localhost:3009/deleteData/' + id)
                   .then(res => {
                         console.log(res.data)
                         window.location.reload()

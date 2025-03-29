@@ -7,21 +7,12 @@ const multer = require("multer");
 const path = require("path");
 const EmployeeModel = require("./models/Employee");
 const UserModel = require("./models/UserData");
-require("dotenv").config(); // Load environment variables
-
-const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY || "your_secret_key";
-const MONGO_URI = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/employeeMS";
+const PORT = 3009; 
+const JWT_SECRET_KEY = "your_secret_key";
+const MONGO_URI = "mongodb://127.0.0.1:27017/employeeMS";
 
 const app = express();
-app.use(express.json());
-app.use(cors({
-    origin: [
-        "http://localhost:3000",  // Local frontend
-        "https://your-vercel-client.vercel.app"  // Deployed frontend
-    ],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true
-}));
+app.use(express.json()); 
 
 // MongoDB Connection
 mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -101,7 +92,7 @@ app.delete("/deleteData/:id", async (req, res) => {
     }
 });
 
-const PORT = process.env.PORT || 3009;
+ 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });

@@ -1,7 +1,7 @@
-import React, { useEffect, useCallback } from 'react'
+import React, { useEffect } from 'react'
 import '../Styles/Dashboard.css'
 import { Link, Outlet, useNavigate } from 'react-router-dom'
-import axios from '../../axiosConfig'
+import axios from 'axios'
 
 const Dashboard = () => {
 
@@ -13,7 +13,7 @@ const Dashboard = () => {
   const handleLogout = () => {
     // Remove token from local storage
     localStorage.removeItem('token');
-    axios.get('https://your-vercel-server-url.vercel.app/logout')
+    axios.get('http://localhost:3009/logout')
       .then(res => {
         console.log(res)
         navigate('/')
@@ -22,25 +22,25 @@ const Dashboard = () => {
   }
 
 
-  const handleProtectedRouteAccess = useCallback(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      axios.get('https://your-vercel-server-url.vercel.app/protectedRoute', {
-        headers: { Authorization: token },
-      })
-        .then(res => console.log(res.data))
-        .catch(err => {
-          console.log(err.response?.data);
-          navigate('/login');
-        });
-    } else {
-      navigate('/login');
-    }
-  }, [navigate]); // ✅ Add navigate as a dependency
+  // const handleProtectedRouteAccess = useCallback(() => {
+  //   const token = localStorage.getItem('token');
+  //   if (token) {
+  //     axios.get('http://localhost:3009/protectedRoute', {
+  //       headers: { Authorization: token },
+  //     })
+  //       .then(res => console.log(res.data))
+  //       .catch(err => {
+  //         console.log(err.response?.data);
+  //         navigate('/login');
+  //       });
+  //   } else {
+  //     navigate('/login');
+  //   }
+  // }, [navigate]); // ✅ Add navigate as a dependency
  
-  useEffect(() => {
-    handleProtectedRouteAccess();
-  }, [handleProtectedRouteAccess]);
+  // useEffect(() => {
+  //   handleProtectedRouteAccess();
+  // }, [handleProtectedRouteAccess]);
 
   return (
     <div className="container-fluid box">

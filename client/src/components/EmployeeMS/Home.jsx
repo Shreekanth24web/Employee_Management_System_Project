@@ -1,4 +1,4 @@
-import axios from '../../axiosConfig'
+import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
 const Home = () => {
@@ -16,7 +16,7 @@ const Home = () => {
 
 
   const adminRecords = () => {
-    axios.get('https://your-vercel-server-url.vercel.app/admin_records')
+    axios.get('http://localhost:3009/admin_records')
       .then(res => {
         // console.log(res.data)
         setAdminData(res.data)
@@ -25,7 +25,7 @@ const Home = () => {
   }
 
   const adminCount = () => {
-    axios.get('https://your-vercel-server-url.vercel.app/admin_count')
+    axios.get('http://localhost:3009/admin_count')
       .then(res => {
         // console.log(res)
         const total = res.data
@@ -34,7 +34,7 @@ const Home = () => {
       .catch(err => console.log('Error fetching admin count:', err))
   }
   const employeeCount = () => {
-    axios.get('https://your-vercel-server-url.vercel.app/employee_count')
+    axios.get('http://localhost:3009/employee_count')
       .then(res => {
         // console.log(res)
         const total = res.data

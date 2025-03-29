@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import '../Styles/AddEmployee.css'
 import { useNavigate, useParams } from 'react-router-dom';
-import axios from '../../axiosConfig'
+import axios from 'axios'
 
 const UpdateEmployee = () => {
 
@@ -66,7 +66,7 @@ const UpdateEmployee = () => {
 
   const handleUpdate = (e) => {
     e.preventDefault()
-    axios.put("https://your-vercel-server-url.vercel.app/updateEmployee/" + id, input)
+    axios.put("http://localhost:3009/updateEmployee/" + id, input)
       .then(result => {
         console.log(result)
 
